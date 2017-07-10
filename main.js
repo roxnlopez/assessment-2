@@ -1,43 +1,49 @@
+console.log("this is running");
 
-var player1 = document.createElement('.blue');
+function Player(car, margin) {
+  this.car = car;
+  this.marginTop = margin;
 
-function player1() {
-  this.x = 0;
-  this.y = 0;
+  this.prepare = function() {
+    $(this.car).css("marginTop", this.marginTop);
+  };
+
+  this.move = function() {
+    $(this.car).css("margin-left", "+=10%");
+  };
 }
 
-player1.prototype.draw = function(context) {
-  context.fillRect(this.x, this.y, 32, 32);
+function Game() {
+  var track = $('.racetrack');
+  var player1 = new Player($('#p1'), "10%");
+  var player2 = new Player($('#p2'), "10%");
+
+  this.start = function() {
+    player1.prepare();
+    player2.prepare();
+    setListener();
+  };
+
+  var setListener = function() {
+    $(document).keyup(function(event) {
+      if (event.which == 38) {
+        player1.move();
+      } else if (event.which == 40) {
+        player2.move();
+      }
+
+      if (parseInt($(player1.car).css("margin-left")) >= parseInt($(track).css("width"))) {
+        gameOver("player1");
+      } else if (parseInt($(player2.car).css("margin-left")) >= parseInt($(track).css("width"))) {
+        gameOver("player2");
+      }
+  });
 };
+}
 
-player1.prototype.moveLeft = function() {
-  this.x -= 1;
+var gameOver = function(winner) {
+if (confirm("Game Over! " + winner + " wins! Hit ok to play again.")) {
+    $(player1.car).css("margin-left", "0%");
+    $(player2.car).css("margin-left", "0%");
+  } 
 };
-
-player1.prototype.moveRight = function() {
-  this.x += 1;
-};
-
-player1.prototype.moveUp = function() {
-  this.y -= 1;
-};
-
-player1.prototype.moveRight = function() {
-  this.y += 1;
-};
-
-
-game.start = function () {
-	game.player = new Player();	
-};
-
-
-
-player1.addEventListener("click", function(){
-	$(this).keydown();
-});
-
-
-red.addEventListener("click", function(){
-	$(this).keydown();
-});

@@ -5,13 +5,25 @@
 </head>
 <body>
 
-	<div class="blue">
+
+	<div class="racetrack">
+		<p style="margin-top: 5%"></p>
+		<div class="player" id="p1"></div>
+		<p style="margin-top: 25%"></p>
+		<div class="player" id="p2"></div>
 	</div>
 
-	<div class="red">
-	</div>
-
-
+	
 	<script type="text/javascript" src="main.js"></script>
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+	 <script>
+	  	var game = new Game();
+		game.start();
+	 </script>
 </body>
 </html>
+
+
