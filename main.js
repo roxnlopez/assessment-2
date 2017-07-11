@@ -52,4 +52,6 @@ if (confirm("Game Over! " + winner + " wins! Hit ok to play again.")) {
     $(player1.car).css("margin-left", "0%");
     $(player2.car).css("margin-left", "0%");
   } 
+$('confirm').unbind('click').bind('click', reset);  
 };
+
